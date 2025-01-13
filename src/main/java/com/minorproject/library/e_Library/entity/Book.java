@@ -1,6 +1,7 @@
 package com.minorproject.library.e_Library.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.minorproject.library.e_Library.enums.Category;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,12 +36,7 @@ public class Book {
     private String description;
 
     @JsonProperty("category")
-    private Category category;
-
-    public enum Category{
-        FICTION,
-        NON_FICTION
-    }
+    private Category category = Category.NON_FICTION;
 
     @Override
     public String toString() {

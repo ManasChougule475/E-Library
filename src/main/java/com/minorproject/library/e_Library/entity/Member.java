@@ -1,7 +1,9 @@
 package com.minorproject.library.e_Library.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.minorproject.library.e_Library.enums.SubscriptionStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.util.UUID;
@@ -26,16 +28,12 @@ public class Member {
     @JsonProperty("mobileNumber")
     private String mobileNumber;
 
+    @Email
     @Column(unique = true)
     @JsonProperty("email")
     private String email;
 
     @JsonProperty("subscriptionStatus")
-    private SubscriptionStatus subscriptionStatus;
-
-    public enum SubscriptionStatus{
-        ACTIVE,
-        INACTIVE
-    }
+    private SubscriptionStatus subscriptionStatus = SubscriptionStatus.INACTIVE;
 
 }
