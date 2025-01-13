@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -28,5 +30,10 @@ public class BookService {
 
     public List<Book> getALLBooks(){
         return this.bookRepository.findAll();
+    }
+
+    public Book getBookById(UUID bookID){
+        Optional<Book> bookOptional= this.bookRepository.findById(bookID);
+        return bookOptional.orElse(null);
     }
 }
