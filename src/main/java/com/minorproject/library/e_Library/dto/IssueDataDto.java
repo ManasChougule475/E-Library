@@ -6,7 +6,7 @@ import java.util.UUID;
 
 //@Getter
 //@Setter
-public class IssueDataDto {
+public class IssueDataDto { // instead of passing entire member and book object we can use pass there ids in our request
     private UUID memberId;
     private UUID bookId;
 

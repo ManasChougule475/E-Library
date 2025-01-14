@@ -13,10 +13,12 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
+import static com.minorproject.library.e_Library.enums.IssueStatus.EXPIRED;
+
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @With
@@ -45,24 +47,34 @@ public class IssueData {
 
     @NotNull
     @Builder.Default
+    @JsonProperty("issueStatus")
     private IssueStatus issueStatus = IssueStatus.ISSUED;
 
     @Builder.Default
+    @JsonProperty("createdAt")
     private Instant createdAt = Instant.now();
 
+    @JsonProperty("expirationDate")
     private Instant expirationDate;
 
     @NotNull
     private double amountPaid;
 
     public Instant calculateExpirationDate() {
-        this.expirationDate = this.createdAt.plus ( 15, ChronoUnit.DAYS );
+        this.expirationDate = this.createdAt.plus ( 1, ChronoUnit.MINUTES );
         return this.expirationDate;
     }
 
     public double calculateAmountPaid() {
         this.amountPaid = this.book.getPrice () * 0.05D;
         return this.amountPaid;
+    }
+
+    public void setIssueStatus(){
+        this.issueStatus = IssueStatus.EXPIRED;
+    }
+    public Instant getExpirationDate(){
+        return this.expirationDate;
     }
 
     // code added cause lombok not working :-  IssueData.builder() :-

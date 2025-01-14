@@ -23,7 +23,6 @@ public class IssueDataController {
 
     @PostMapping
     public ResponseEntity<IssueData> addIssueData(@RequestBody IssueDataDto issueDataDto){
-        System.out.println("1***"+issueDataDto);
         IssueData issueData = this.issueDataService.addIssueData(issueDataDto);
         return new ResponseEntity<>(issueData, HttpStatus.CREATED);
     }
@@ -31,6 +30,12 @@ public class IssueDataController {
     @GetMapping
     public ResponseEntity<List<IssueData>> getIssueDataByMemberId(@RequestParam UUID memberId){
         List<IssueData> issueDataList = this.issueDataService.getIssueDataByMemberId(memberId);
+        return new ResponseEntity<>(issueDataList, HttpStatus.OK);
+    }
+
+    @PutMapping("/change_issue_status/{memberId}")
+    public ResponseEntity<List<IssueData>> changeIssueDataStatus(@PathVariable UUID memberId){
+        List<IssueData> issueDataList = this.issueDataService.changeIssueDataStatus(memberId);
         return new ResponseEntity<>(issueDataList, HttpStatus.OK);
     }
 

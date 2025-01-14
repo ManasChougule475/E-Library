@@ -8,6 +8,7 @@ import com.minorproject.library.e_Library.repository.IssueDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,14 +27,11 @@ public class IssueDataService {
         }
 
         public IssueData addIssueData(IssueDataDto issueDataDto){
-            System.out.println("11***"+issueDataDto.getBookId()+"***"+issueDataDto.getMemberId());
             Book book = this.bookService.getBookById(issueDataDto.getBookId());
             Member member = this.memberService.getMemberById((issueDataDto.getMemberId()));
-            System.out.println("2***");
             if(book==null && member==null){
                 throw new RuntimeException();
             }
-            System.out.println("3***");
             IssueData issueData = IssueData.builder().book(book).member(member).build();
             return this.addIssueData(issueData);
         }
@@ -46,5 +44,19 @@ public class IssueDataService {
 
         public List<IssueData> getIssueDataByMemberId(UUID memberId){
             return this.issueDataRepository.findByMemberId(memberId);
+        }
+
+        public List<IssueData> changeIssueDataStatus(UUID memberId){
+            List<IssueData> issueDataList= this.issueDataRepository.findByMemberId(memberId);
+            Instant now = Instant.now();
+            for (int i=0;i<issueDataList.size(); i++){
+                IssueData issueData = issueDataList.get(i);
+                if (issueData.getExpirationDate().isBefore(now)) {
+                    issueData.setIssueStatus();
+                    issueDataRepository.save(issueData); // Save the updated IssueData back to the database
+                }
+            }
+
+            return issueDataList;
         }
 }
