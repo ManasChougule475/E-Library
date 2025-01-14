@@ -11,6 +11,6 @@ import java.util.UUID;
 @Repository
 public interface IssueDataRepository extends JpaRepository<IssueData, UUID> {
     @Query("select i from IssueData i where i.member.memberId = ?1")
-    List<IssueData> findByMemberId(UUID memberId);
+    List<IssueData> findByMemberId(UUID memberId); // this will give list of all the issue tickets associated with given member id
 
 }

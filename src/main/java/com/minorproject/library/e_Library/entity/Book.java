@@ -50,4 +50,8 @@ public class Book {
                 '}';
     }
 
+    // code added cause lombok not working :-
+    public Double getPrice(){
+        return price;
+    }
 }
