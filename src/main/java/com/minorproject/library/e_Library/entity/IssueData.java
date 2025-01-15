@@ -1,8 +1,6 @@
 package com.minorproject.library.e_Library.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.minorproject.library.e_Library.enums.IssueStatus;
 import jakarta.persistence.*;
