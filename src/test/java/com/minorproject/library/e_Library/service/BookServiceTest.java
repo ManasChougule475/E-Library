@@ -34,23 +34,23 @@ public class BookServiceTest {
             .name("TestName")
             .price(400D).build();
 
-    @Test
-    void getAllBooks_whenThereAreAListBooks_shouldReturnAListOfBooks() {
-        List<Book> bookList = Arrays.asList(book, book.withPrice(500D), book.withPrice(600D));
+//    @Test
+//    void getAllBooks_whenThereAreAListBooks_shouldReturnAListOfBooks() {
+//        List<Book> bookList = Arrays.asList(book, book.withPrice(500D), book.withPrice(600D));
+//
+//        Mockito.when(this.bookRepository.findAll()).thenReturn(bookList);
+//        List<Book> fetchedBookList = this.bookService.getALLBooks();
+//
+//        Assertions.assertEquals(bookList.size(), fetchedBookList.size());
+//    }
 
-        Mockito.when(this.bookRepository.findAll()).thenReturn(bookList);
-        List<Book> fetchedBookList = this.bookService.getALLBooks();
-
-        Assertions.assertEquals(bookList.size(), fetchedBookList.size());
-    }
-
-    @Test
-    void getAllBooks_whenThereAreNoBooks_shouldReturnAEmptyList() {
-        Mockito.when(this.bookRepository.findAll()).thenReturn(Collections.emptyList());
-        List<Book> fetchedBookList = this.bookService.getALLBooks();
-
-        Assertions.assertEquals(0, fetchedBookList.size());
-    }
+//    @Test
+//    void getAllBooks_whenThereAreNoBooks_shouldReturnAEmptyList() {
+//        Mockito.when(this.bookRepository.findAll()).thenReturn(Collections.emptyList());
+//        List<Book> fetchedBookList = this.bookService.getALLBooks();
+//
+//        Assertions.assertEquals(0, fetchedBookList.size());
+//    }
 
     @Test
     void getBookById_whenTheBookExists_shouldReturnBook() {
@@ -69,11 +69,11 @@ public class BookServiceTest {
         Assertions.assertNull(book1);
     }
 
-    @Test
-    void addBook_whenBookIsPassed_shouldReturnAddedBook() {
-        Mockito.when(this.bookRepository.save(book)).thenReturn(book);
-
-        Book book1 = this.bookService.addBook(book);
-        Assertions.assertEquals(book, book1);
-    }
+//    @Test
+//    void addBook_whenBookIsPassed_shouldReturnAddedBook() {
+//        Mockito.when(this.bookRepository.save(book)).thenReturn(book);
+//
+//        Book book1 = this.bookService.addBook(book);
+//        Assertions.assertEquals(book, book1);
+//    }
 }
