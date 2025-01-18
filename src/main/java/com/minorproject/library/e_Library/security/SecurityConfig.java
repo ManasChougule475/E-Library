@@ -32,6 +32,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/book/**").hasAnyRole("MEMBER", "LIBRARIAN") // to access this endpoint authentication is required and only users with given role are allowed to access the endpoint
                 .requestMatchers("/member/**").hasAnyRole("LIBRARIAN") // only librarian can access this endpoint
+                .requestMatchers("/auth/**", "/public/**").permitAll() // any user can access this endpoints (no need of authentication to access this endpoints)
                 .anyRequest().authenticated())
         .formLogin(Customizer.withDefaults()); // used form login (use browser to access above endpoints) to authenticate user against database credentials
         return http.build();

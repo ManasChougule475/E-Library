@@ -58,4 +58,8 @@ public class Member {
     public String getRole(){
         return this.role;
     }
+
+    public void setPassword(String password){
+        this.password=password;
+    }
 }
