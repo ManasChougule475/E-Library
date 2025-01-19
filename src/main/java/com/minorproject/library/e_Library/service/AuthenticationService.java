@@ -22,17 +22,17 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Member login(AuthDto authDto){
-        Optional<Member> memberOptional = this.memberRepository.findByUsername(authDto.getUsername());
-        if(memberOptional.isEmpty()){
-            throw new UsernameNotFoundException(String.format("Member with username: %s was not found", authDto.getUsername()));
-        }
-        Member member = memberOptional.get();
-        if (!this.passwordEncoder.matches(authDto.getPassword(), member.getPassword())) {
-            throw new IncorrectCredentialsException("Incorrect password provided");
-        }
-        System.out.println("user authenticated successfully");
-        return member;
-    } // this will not automatically tell spring that user is logged in so we furhter need to implment token based authentication
+//    public Member login(AuthDto authDto){
+//        Optional<Member> memberOptional = this.memberRepository.findByUsername(authDto.getUsername());
+//        if(memberOptional.isEmpty()){
+//            throw new UsernameNotFoundException(String.format("Member with username: %s was not found", authDto.getUsername()));
+//        }
+//        Member member = memberOptional.get();
+//        if (!this.passwordEncoder.matches(authDto.getPassword(), member.getPassword())) {
+//            throw new IncorrectCredentialsException("Incorrect password provided");
+//        }
+//        System.out.println("user authenticated successfully");
+//        return member;
+//    } // this will not automatically tell spring that user is logged in so we furhter need to implment token based authentication
 
 }
